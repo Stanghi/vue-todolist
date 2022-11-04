@@ -43,8 +43,8 @@ methods: {
 
         for (i in this.tasks){
             if (this.newMsgString === this.tasks[i].text){
-                this.errorString = 'Attenzione! il task è già presente nella tua to-do list.';
-                this.newMsgString = '';
+                this.errorString = 'Attenzione! il task è già presente nella tua lista.';
+                return;
             }
         }
 
