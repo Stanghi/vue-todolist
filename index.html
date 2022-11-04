@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CDN Vue.js -->
+        <script src="https://unpkg.com/vue@3"></script>
+
+        <!-- CDN Font awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="assets/css/style.css">
+        <title>Init</title>
+    </head>
+    <body>
+
+        <!-- BACKGROUND -->
+        <div class="area">
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+            <!-- MAIN -->
+            <main>
+                <div id="app" class="container">
+
+                    <div class="logo">
+                        <h1>TO DO LIST</h1>
+                    </div>
+
+                    <div class="input-area">
+                        <input type="text" placeholder="Add new task">
+                            <button>
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        <p class="error">Messaggio di errore</p>
+                    </div>
+
+                    <div class="tasks-area">
+                        <ul>
+                            
+                            <li class="task">
+                                <span>Stendere i panni</span>
+                                
+                                <div class="btn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </div>
+                            </li>
+                            
+                            <li class="task">
+                                <span>Studiare Vue.js</span>
+                                
+                                <div class="btn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </div>
+                            </li>
+                            
+                            <li class="task">
+                                <span>Chiamare Veterinario</span>
+                                
+                                <div class="btn">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <h3>Non ci sono task &#128526;</h3>
+                    </div>
+
+                </div>
+            </main>
+        </div> <!-- END BACKGROUND -->
+
+        <script src="assets/js/script.js"></script>
+    </body>
+</html>
