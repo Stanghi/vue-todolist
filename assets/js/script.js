@@ -18,7 +18,7 @@ data() {
             },
             {
                 text: 'Chiamare Veterinario',
-                done: false
+                done: true
             }
         ]
     }

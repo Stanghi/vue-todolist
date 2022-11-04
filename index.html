@@ -46,15 +46,16 @@
                             </button>
                         <p class="error">{{errorString}}</p>
                     </div>
-
+                    
                     <div class="tasks-area">
+                        <div class="badge">{{tasks.length}} Tasks</div>
                         <ul v-if="tasks.length > 0">
                             <li v-for="(task, index) in tasks" class="task" :class="{'done': task.done}" @click="task.done = !task.done">
                                 <div class="element-li d-flex">
-                                    <span class="index">{{index+1}}</span>
+                                    <span class="index"><i class="fa-solid fa-check"></i></span>
                                     <span>{{task.text}}</span>
                                 </div>
-
+                                
                                 <div @click.stop="removeTask(index)" class="btn">
                                     <i v-if="task.done" class="fa-solid fa-trash"></i>
                                 </div>
