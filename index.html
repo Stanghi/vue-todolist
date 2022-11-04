@@ -50,10 +50,13 @@
                     <div class="tasks-area">
                         <ul v-if="tasks.length > 0">
                             <li v-for="(task, index) in tasks" class="task" :class="{'done': task.done}" @click="task.done = !task.done">
-                                <span>{{task.text}}</span>
+                                <div class="element-li d-flex">
+                                    <span class="index">{{index+1}}</span>
+                                    <span>{{task.text}}</span>
+                                </div>
 
                                 <div @click.stop="removeTask(index)" class="btn">
-                                    <i class="fa-solid fa-xmark"></i>
+                                    <i v-if="task.done" class="fa-solid fa-trash"></i>
                                 </div>
                             </li>
                         </ul>

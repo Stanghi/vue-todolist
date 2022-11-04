@@ -37,7 +37,7 @@ methods: {
             this.errorString = 'Attenzione! Non si può eliminare il task se non è stato ancora fatto.';
         }
     },
-
+    
     createTask(){
         this.errorString = '';
 
