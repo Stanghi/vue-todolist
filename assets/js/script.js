@@ -7,6 +7,7 @@ data() {
     return{
         errorString: '',
         newMsgString: '',
+        counter: 0,
         tasks: [
             {
                 text: 'Stendere i panni',
@@ -18,7 +19,7 @@ data() {
             },
             {
                 text: 'Chiamare Veterinario',
-                done: true
+                done: false
             }
         ]
     }
@@ -27,11 +28,24 @@ data() {
 
 methods: {
 
+    toggleTaskDone(i){
+        this.tasks[i].done = !this.tasks[i].done;
+        if (this.tasks[i].done){
+            this.counter++;
+        }
+        else{
+            this.counter--
+        }
+    },
+
     removeTask(index){
         this.errorString = '';
 
-        if (this.tasks[index].done) this.tasks.splice(index,1);
-        else this.errorString = 'Attenzione! Non si può eliminare il task se non è stato ancora fatto.'
+        if (this.tasks[index].done) {
+            this.tasks.splice(index,1);
+            this.counter--;
+        }
+        else this.errorString = 'Attention! You cannot delete the task if it has not already been done.'
     },
     
     createTask(){
@@ -39,14 +53,14 @@ methods: {
 
         for (i in this.tasks){
             if (this.newMsgString === this.tasks[i].text){
-                this.errorString = 'Attenzione! il task è già presente nella tua lista.';
+                this.errorString = 'Attention! the task is already in your list.';
                 this.newMsgString = '';
                 return;
             }
         }
 
         if (this.newMsgString.length < 5){
-            this.errorString = 'Attenzione! Il task deve avere almeno 5 caratteri.';
+            this.errorString = 'Attention! The task must have at least 5 characters.';
         }
         else {
             const newTask = {
@@ -63,9 +77,8 @@ methods: {
     },
 
     clearAllDone(){
-        for (i in this.tasks){
-            if(this.tasks[i].done) this.tasks.splice();
-        }
+        this.tasks = this.tasks.filter((item) => !item.done);
+        this.counter = 0;
     },
 
     moveTask(index, booleanValor){
