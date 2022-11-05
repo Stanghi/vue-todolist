@@ -41,20 +41,34 @@
                         </div>
 
                         <div class="tasks-area">
-                            <div class="badge">{{tasks.length}} Tasks</div>
+                            <div v-if="tasks.length > 0" class="badge-area">
+                                <div class="badge">{{tasks.length}}</div>
+                                <div class="badge clear-all" @click="clearAll()">Clear all</div>
+                                <div class="badge clear-all" @click="clearAllDone()">Remove done</div>
+                            </div>
                             <ul v-if="tasks.length > 0">
                                 <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="task.done = !task.done">
                                     <div class="element-li d-flex">
-                                        <span class="index"><i class="fa-solid fa-check"></i></span>
+                                        <span class="index"><i v-show="task.done" class="fa-solid fa-check"></i></span>
                                         <span>{{task.text}}</span>
                                     </div>
 
-                                    <div @click.stop="removeTask(index)" class="btn">
-                                        <i v-if="task.done" class="fa-solid fa-trash"></i>
+                                    <div class="d-flex">
+                                        <div @click.stop="removeTask(index)" class="btn">
+                                            <i v-if="task.done" class="fa-solid fa-trash"></i>
+                                        </div>
+
+                                        <div class="move-task d-flex">
+                                            <i @click.stop="moveTask(index, true)" class="fa-solid fa-chevron-up"></i>
+                                            <i @click.stop="moveTask(index, false)" class="fa-solid fa-chevron-down"></i>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
-                            <h3 v-else>Non ci sono task &#128526;</h3>
+                            <div v-else class="no-task-area">
+                                <h3>Non ci sono task</h3>
+                                <img src="assets/img/chill.png" class="" alt="chill">
+                            </div>
                         </div>
 
                     </div>

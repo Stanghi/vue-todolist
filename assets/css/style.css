@@ -81,8 +81,25 @@ body{
     overflow-x: hidden;
 }
 
-.badge{
+.badge-area{
     position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.no-task-area{
+    display: flex;
+    text-transform: uppercase;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-task-area img{
+    width: 100%;
+}
+
+.badge{
     display: flex;
     float: right;
     justify-content: center;
@@ -97,12 +114,16 @@ body{
     border-radius: 10px;
 }
 
+.badge.clear-all{
+    cursor: pointer;
+}
+
 .task{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+/*     border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
     cursor: pointer;
 }
 
@@ -117,7 +138,6 @@ body{
 }
 
 .task.done .index, .task.done .fa-check{
-    visibility: visible;
     opacity: .5;
 }
 
@@ -139,7 +159,6 @@ body{
 
 .fa-check{
     font-size: .8rem;
-    visibility: hidden;
 }
 
 .btn{
@@ -150,6 +169,7 @@ body{
 
 .btn i{
     opacity: .5;
+    margin-right: 15px;
 }
 
 .task .btn i:hover{
@@ -159,6 +179,16 @@ body{
 .error{
     margin-top: 20px;
     color: orange;
+}
+
+.move-task{
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: .7rem;
+}
+
+.move-task i:hover{
+    color: black;
 }
 
 ::-webkit-scrollbar {
