@@ -7,6 +7,7 @@ data() {
     return{
         errorString: '',
         newMsgString: '',
+        upHere: false,
         counter: 0,
         tasks: [
             {
@@ -90,7 +91,7 @@ methods: {
             if (index === 0) return;
             [this.tasks[index], this.tasks[index-1]] = [this.tasks[index-1], this.tasks[index]];
         }
-    }
+    },
 
 } // end methods
 

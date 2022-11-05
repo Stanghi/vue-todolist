@@ -46,39 +46,41 @@
                         </div>
 
                         <div class="tasks-area">
+                            <div v-for="task in tasks" v-if="tasks.length > 0" class="badge-area">
+                                <div class="badge clear-all" @click.stop="clearAll()">Remove all
+                                    <div class="badge-number">{{tasks.length}}</div>
+                                </div>
+
+                                <div v-show="task.done" class="badge clear-all" @click.stop="clearAllDone()">Remove done
+                                    <div class="badge-number">{{counter}}</div>
+                                </div>
+                            </div>
+
                             <ul v-if="tasks.length > 0">
-                                <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="toggleTaskDone(index)">
-
-                                    <div v-if="tasks.length > 0" class="badge-area">
-                                        <div class="badge clear-all" @click.stop="clearAll()">Remove all
-                                            <div class="badge-number">{{tasks.length}}</div>
-                                        </div>
-
-                                        <div v-show="task.done" class="badge clear-all" @click.stop="clearAllDone()">Remove done
-                                            <div class="badge-number">{{counter}}</div>
-                                        </div>
-                                    </div>
-
+                                <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="toggleTaskDone(index)" @mouseover="upHere = true" @mouseleave="upHere = false">
                                     <div class="element-li d-flex">
                                         <span class="index"><i v-show="task.done" class="fa-solid fa-check"></i></span>
                                         <span>{{task.text}}</span>
                                     </div>
 
-                                    <div class="d-flex">
-                                        <div @click.stop="removeTask(index)" class="btn">
-                                            <i v-if="task.done" class="fa-solid fa-trash"></i>
-                                        </div>
+                                    <div class="action-area d-flex">
+                                        <i class="fa-solid fa-tag" @click.stop=""></i>
 
                                         <div class="move-task d-flex">
                                             <i @click.stop="moveTask(index, true)" class="fa-solid fa-chevron-up"></i>
                                             <i @click.stop="moveTask(index, false)" class="fa-solid fa-chevron-down"></i>
                                         </div>
+
+                                        <div @click.stop="removeTask(index)" class="btn">
+                                            <i v-if="task.done" class="fa-solid fa-trash"></i>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
+
                             <div v-else class="no-task-area">
                                 <h3>0 tasks found. It's time to chill</h3>
-                                <img src="assets/img/chill.png" class="" alt="chill">
+                                <img src="assets/img/chill.png" alt="chill">
                             </div>
                         </div>
 

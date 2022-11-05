@@ -96,7 +96,7 @@ body{
 }
 
 .no-task-area img{
-    width: 100%;
+    width: 80%;
 }
 
 .badge{
@@ -144,6 +144,11 @@ body{
     border-radius: 10px;
 }
 
+.task:hover .move-task,
+.task:hover .fa-tag{
+    visibility: visible;
+}
+
 .task.done span:last-child{
     text-decoration: line-through;
     opacity: .5;
@@ -180,12 +185,12 @@ body{
 }
 
 .btn i{
-    opacity: .5;
-    margin-right: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 15px;
 }
 
 .task .btn i:hover{
-    opacity: 1;
+    color: #4E54C8;
 }
 
 .error{
@@ -193,14 +198,25 @@ body{
     color: orange;
 }
 
-.move-task{
-    flex-direction: column;
+.action-area{
+    align-items: center;
+}
+
+.fa-tag{
+    margin-right: 15px;
     color: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+}
+
+.move-task{
+    visibility: hidden;
+    color: rgba(0, 0, 0, 0.5);
+    flex-direction: column;
     font-size: .7rem;
 }
 
-.move-task i:hover{
-    color: black;
+.action-area i:hover{
+    color: #4E54C8;
 }
 
 ::-webkit-scrollbar {
