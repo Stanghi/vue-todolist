@@ -16,57 +16,52 @@
     </head>
     <body>
 
-        <!-- BACKGROUND -->
-        <div class="area">
-            <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+        <div id="app">
 
-            <!-- MAIN -->
-            <main>
-                <div id="app" class="container">
+            <!-- BACKGROUND -->
+            <div class="area">
+                <ul class="circles">
+                    <li v-for="n in 10"></li>
+                </ul>
 
-                    <div class="logo">
-                        <h1>TO DO LIST</h1>
-                    </div>
+                <!-- MAIN -->
+                <main>
+                    <div class="container">
 
-                    <div class="input-area">
-                        <input @keyup.enter="createTask()" v-model.trim="newMsgString" type="text" placeholder="Add new task">
+                        <div class="logo">
+                            <h1>TO DO LIST</h1>
+                        </div>
+
+                        <div class="input-area">
+                            <input @keyup.enter="createTask()" v-model.trim="newMsgString" type="text" placeholder="Add new task">
                             <button @click="createTask()">
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                        <p class="error">{{errorString}}</p>
-                    </div>
-                    
-                    <div class="tasks-area">
-                        <div class="badge">{{tasks.length}} Tasks</div>
-                        <ul v-if="tasks.length > 0">
-                            <li v-for="(task, index) in tasks" class="task" :class="{'done': task.done}" @click="task.done = !task.done">
-                                <div class="element-li d-flex">
-                                    <span class="index"><i class="fa-solid fa-check"></i></span>
-                                    <span>{{task.text}}</span>
-                                </div>
-                                
-                                <div @click.stop="removeTask(index)" class="btn">
-                                    <i v-if="task.done" class="fa-solid fa-trash"></i>
-                                </div>
-                            </li>
-                        </ul>
-                        <h3 v-else>Non ci sono task &#128526;</h3>
-                    </div>
+                            <p class="error">{{errorString}}</p>
+                        </div>
 
-                </div>
-            </main>
-        </div> <!-- END BACKGROUND -->
+                        <div class="tasks-area">
+                            <div class="badge">{{tasks.length}} Tasks</div>
+                            <ul v-if="tasks.length > 0">
+                                <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="task.done = !task.done">
+                                    <div class="element-li d-flex">
+                                        <span class="index"><i class="fa-solid fa-check"></i></span>
+                                        <span>{{task.text}}</span>
+                                    </div>
+
+                                    <div @click.stop="removeTask(index)" class="btn">
+                                        <i v-if="task.done" class="fa-solid fa-trash"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                            <h3 v-else>Non ci sono task &#128526;</h3>
+                        </div>
+
+                    </div>
+                </main>
+            </div> <!-- END BACKGROUND -->
+
+        </div> <!-- END APP -->
 
         <script src="assets/js/script.js"></script>
     </body>
