@@ -37,7 +37,7 @@ data() {
 methods: {
 
     toggleTaskDone(i){
-        !this.tasks[i].done ? this.counter++ : this.counter--; // DA VEDERE
+        /*!this.tasks[i].done ? this.counter++ : this.counter--;*/
 
         if (this.tasks[i].secondary) {
             this.tasks[i].done = !this.tasks[i].done;
@@ -75,7 +75,6 @@ methods: {
                 let j = 1;
                 while (this.tasks[i-j].secondary) {
                     j++;
-                    console.log(i,j);
                 }
                 this.tasks[i-j].done = false;
             }
@@ -88,7 +87,7 @@ methods: {
                 while (this.tasks[i+j]?.secondary) {
                     this.tasks[i+j].done = true;
                     j++;
-                    this.counter++;
+                    //this.counter++;
                 }
             }
             else {
@@ -96,7 +95,7 @@ methods: {
                 while (this.tasks[i+j]?.secondary) {
                     this.tasks[i+j].done = false;
                     j++;
-                    this.counter--;
+                    //this.counter--;
                 }
             }
         }
@@ -108,7 +107,7 @@ methods: {
 
         if (this.tasks[index].done) {
             this.tasks.splice(index,1);
-            this.counter--;
+            //this.counter--;
         }
         else this.errorString = 'Attention! You cannot delete the task if it has not already been done.'
     },
@@ -171,7 +170,7 @@ methods: {
 
     clearAllDone(){
         this.tasks = this.tasks.filter((item) => !item.done);
-        this.counter = 0;
+        //this.counter = 0;
     },
 
     moveTask(index, booleanValor){
