@@ -14,17 +14,20 @@ data() {
             {
                 text: 'Stendere i panni',
                 done: false,
-                label: ''
+                label: '',
+                secondary: false
             },
             {
                 text: 'Studiare Vue.js',
                 done: false,
-                label: ''
+                label: '',
+                secondary: false
             },
             {
                 text: 'Chiamare Veterinario',
                 done: false,
-                label: ''
+                label: '',
+                secondary: false
             }
         ]
     }
@@ -34,13 +37,70 @@ data() {
 methods: {
 
     toggleTaskDone(i){
-        this.tasks[i].done = !this.tasks[i].done;
-        if (this.tasks[i].done){
-            this.counter++;
+        !this.tasks[i].done ? this.counter++ : this.counter--; // DA VEDERE
+
+        if (this.tasks[i].secondary) {
+            this.tasks[i].done = !this.tasks[i].done;
+            if (this.tasks[i].done) {
+                let allDone = false;
+                let j = 0;
+                while (this.tasks[i+j]?.secondary) {
+                    if (this.tasks[i+j].done) {
+                        allDone = true;
+                        j++;
+                    }
+                    else{
+                        allDone = false;
+                        break;
+                    }
+                }
+                if (allDone) {
+                    let j = 1;
+                    while (this.tasks[i-j].secondary) {
+                        if (this.tasks[i-j].done) {
+                            allDone = true;
+                            j++;
+                        }
+                        else{
+                            allDone = false;
+                            break;
+                        }
+                    }
+                    if (allDone) {
+                        this.tasks[i-j].done = true;
+                    }
+                }
+            }
+            else{
+                let j = 1;
+                while (this.tasks[i-j].secondary) {
+                    j++;
+                    console.log(i,j);
+                }
+                this.tasks[i-j].done = false;
+            }
         }
-        else{
-            this.counter--
+        else {
+            this.tasks[i].done = !this.tasks[i].done;
+
+            if (this.tasks[i].done) {
+                let j = 1;
+                while (this.tasks[i+j]?.secondary) {
+                    this.tasks[i+j].done = true;
+                    j++;
+                    this.counter++;
+                }
+            }
+            else {
+                let j = 1;
+                while (this.tasks[i+j]?.secondary) {
+                    this.tasks[i+j].done = false;
+                    j++;
+                    this.counter--;
+                }
+            }
         }
+
     },
 
     removeTask(index){
@@ -52,7 +112,7 @@ methods: {
         }
         else this.errorString = 'Attention! You cannot delete the task if it has not already been done.'
     },
-    
+
     createTask(){
         this.errorString = '';
 
@@ -124,6 +184,11 @@ methods: {
             [this.tasks[index], this.tasks[index-1]] = [this.tasks[index-1], this.tasks[index]];
         }
     },
+
+    setSecondaryTask(i){
+        if (!this.tasks[i].secondary) this.tasks[i].secondary = true;
+        else this.tasks[i].secondary = false;
+    }
 
 } // end methods
 

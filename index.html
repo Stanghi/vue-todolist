@@ -57,9 +57,14 @@
                             </div>
 
                             <ul v-if="tasks.length > 0">
-                                <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="toggleTaskDone(index)" @mouseleave="showLabelInput = false">
-                                    <div class="element-li d-flex">
-                                        <span class="index"><i v-show="task.done" class="fa-solid fa-check"></i></span>
+                                <li class="task"
+                                v-for="(task, index) in tasks"
+                                    :class="task.done && 'done'"
+                                    @click="toggleTaskDone(index)"
+                                    @mouseleave="showLabelInput = false"
+                                >
+                                    <div class="element-li d-flex" :class="task.secondary && 'secondary-task'">
+                                        <span class="checkbox"><i v-show="task.done" class="fa-solid fa-check"></i></span>
                                         <span>{{task.text}}</span>
                                         <span v-if="task.label" @click.stop="removeLabel(index)" class="label">{{task.label}}</span>
                                     </div>
@@ -73,6 +78,8 @@
                                             v-model.trim="newLabelString"
                                             @click.stop=""
                                             @keyup.enter="createLabel(index)">
+
+                                        <i @click.stop="setSecondaryTask(index)" class="fa-solid fa-angles-right" :class="task.secondary && 'rotate'"></i>
                                         <i class="fa-solid fa-tag" @click.stop="showLabelInput = true"></i>
 
                                         <div class="move-task d-flex">

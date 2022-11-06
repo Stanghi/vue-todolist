@@ -151,12 +151,21 @@ body{
     visibility: visible;
 }
 
+.task:hover .fa-angles-right{
+    display: block;
+}
+
+.task .fa-angles-right:hover{
+    color: #4E54C8;
+    opacity: 1;
+}
+
 .task.done span:nth-child(2){
     text-decoration: line-through;
     opacity: .5;
 }
 
-.task.done .index, .task.done .fa-check{
+.task.done .checkbox, .task.done .fa-check{
     opacity: .5;
 }
 
@@ -165,7 +174,7 @@ body{
     align-items: center;
 }
 
-.index{
+.checkbox{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,6 +206,16 @@ body{
 
 .fa-check{
     font-size: .8rem;
+}
+
+.fa-angles-right{
+    display: none;
+    margin-right: 15px;
+    opacity: .5;
+}
+
+.rotate{
+    transform: rotate(3.142rad);
 }
 
 .btn{
@@ -238,6 +257,10 @@ body{
 
 .action-area i:hover{
     color: #4E54C8;
+}
+
+.secondary-task{
+    margin-left: 30px;
 }
 
 ::-webkit-scrollbar {
