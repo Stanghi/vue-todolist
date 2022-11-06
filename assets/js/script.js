@@ -7,20 +7,24 @@ data() {
     return{
         errorString: '',
         newMsgString: '',
-        upHere: false,
+        newLabelString: '',
+        showLabelInput: false,
         counter: 0,
         tasks: [
             {
                 text: 'Stendere i panni',
-                done: false
+                done: false,
+                label: ''
             },
             {
                 text: 'Studiare Vue.js',
-                done: false
+                done: false,
+                label: ''
             },
             {
                 text: 'Chiamare Veterinario',
-                done: false
+                done: false,
+                label: ''
             }
         ]
     }
@@ -66,11 +70,39 @@ methods: {
         else {
             const newTask = {
                 text: this.newMsgString,
-                done: false
+                done: false,
+                label: ''
             }
             this.tasks.unshift(newTask);
             this.newMsgString = '';
         }
+    },
+
+    createLabel(i){
+        this.errorString = '';
+
+        if (this.tasks[i].label === this.newLabelString) {
+            this.errorString = 'Attention! this task already has this label.';
+        }
+
+        if (this.newLabelString.length > 10) {
+            this.errorString = 'Attention! the task must have a maximum of 10 characters.';
+            this.newLabelString = '';
+            return;
+        }
+
+        if (this.tasks[i].label === '' && this.newLabelString.length < 10) {
+            this.tasks[i].label = this.newLabelString;
+            this.newLabelString = '';
+        }
+        else {
+            if (this.tasks[i].label) this.tasks[i].label = this.newLabelString;
+        }
+        this.newLabelString = '';
+    },
+
+    removeLabel(i){
+        this.tasks[i].label = '';
     },
 
     clearAll(){

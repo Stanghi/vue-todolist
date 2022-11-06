@@ -57,14 +57,23 @@
                             </div>
 
                             <ul v-if="tasks.length > 0">
-                                <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="toggleTaskDone(index)" @mouseover="upHere = true" @mouseleave="upHere = false">
+                                <li v-for="(task, index) in tasks" class="task" :class="task.done && 'done'" @click="toggleTaskDone(index)" @mouseleave="showLabelInput = false">
                                     <div class="element-li d-flex">
                                         <span class="index"><i v-show="task.done" class="fa-solid fa-check"></i></span>
                                         <span>{{task.text}}</span>
+                                        <span v-if="task.label" @click.stop="removeLabel(index)" class="label">{{task.label}}</span>
                                     </div>
 
                                     <div class="action-area d-flex">
-                                        <i class="fa-solid fa-tag" @click.stop=""></i>
+                                        <input
+                                            v-if="showLabelInput"
+                                            class="input-label"
+                                            type="text"
+                                            placeholder="Add a new label"
+                                            v-model.trim="newLabelString"
+                                            @click.stop=""
+                                            @keyup.enter="createLabel(index)">
+                                        <i class="fa-solid fa-tag" @click.stop="showLabelInput = true"></i>
 
                                         <div class="move-task d-flex">
                                             <i @click.stop="moveTask(index, true)" class="fa-solid fa-chevron-up"></i>
