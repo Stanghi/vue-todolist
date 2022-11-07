@@ -7,8 +7,10 @@ data() {
     return{
         errorString: '',
         newMsgString: '',
+        changeText: '',
         newLabelString: '',
         showLabelInput: false,
+        showChangeTask: false,
         counter: 0,
         tasks: [
             {
@@ -134,6 +136,19 @@ methods: {
             }
             this.tasks.unshift(newTask);
             this.newMsgString = '';
+        }
+    },
+
+    changeTask(i){
+        if (this.tasks[i].text !== ''){
+            if (this.changeText.length > 5){
+                this.tasks[i].text = this.changeText;
+                this.changeText = '';
+            }
+            else {
+                this.errorString = 'Attention! The task must have at least 5 characters.';
+                this.changeText = '';
+            }
         }
     },
 

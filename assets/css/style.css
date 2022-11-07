@@ -148,6 +148,7 @@ body{
 
 .task:hover .move-task,
 .task:hover .fa-tag,
+.task:hover .fa-pen,
 .task:hover .input-label{
     visibility: visible;
 }
@@ -243,7 +244,7 @@ body{
     align-items: center;
 }
 
-.fa-tag{
+.fa-tag, .fa-pen{
     margin-right: 15px;
     color: rgba(0, 0, 0, 0.5);
     visibility: hidden;

@@ -62,6 +62,7 @@
                                     :class="task.done && 'done'"
                                     @click="toggleTaskDone(index)"
                                     @mouseleave="showLabelInput = false"
+                                    @mouseleave="showChangeTask = false"
                                 >
                                     <div class="element-li d-flex" :class="task.secondary && 'secondary-task'">
                                         <span class="checkbox"><i v-show="task.done" class="fa-solid fa-check"></i></span>
@@ -79,7 +80,17 @@
                                             @click.stop=""
                                             @keyup.enter="createLabel(index)">
 
+                                            <input
+                                            v-if="showChangeTask"
+                                            class="input-label"
+                                            type="text"
+                                            placeholder="Change Task"
+                                            v-model.trim="changeText"
+                                            @click.stop=""
+                                            @keyup.enter="changeTask(index)">
+
                                         <i @click.stop="setSecondaryTask(index)" class="fa-solid fa-angles-right" :class="task.secondary && 'rotate'"></i>
+                                        <i class="fa-solid fa-pen" @click.stop="showChangeTask = true"></i>
                                         <i class="fa-solid fa-tag" @click.stop="showLabelInput = true"></i>
 
                                         <div class="move-task d-flex">
