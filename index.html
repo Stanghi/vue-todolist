@@ -61,8 +61,8 @@
                                 v-for="(task, index) in tasks"
                                     :class="task.done && 'done'"
                                     @click="toggleTaskDone(index)"
-                                    @mouseleave="showLabelInput = false"
                                     @mouseleave="showChangeTask = false"
+                                    @mouseleave="showLabelInput = false"
                                 >
                                     <div class="element-li d-flex" :class="task.secondary && 'secondary-task'">
                                         <span class="checkbox"><i v-show="task.done" class="fa-solid fa-check"></i></span>

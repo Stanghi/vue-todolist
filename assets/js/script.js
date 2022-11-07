@@ -141,7 +141,7 @@ methods: {
 
     changeTask(i){
         if (this.tasks[i].text !== ''){
-            if (this.changeText.length > 5){
+            if (this.changeText.length >= 5){
                 this.tasks[i].text = this.changeText;
                 this.changeText = '';
             }
