@@ -140,6 +140,8 @@ methods: {
     },
 
     changeTask(i){
+        this.errorString = '';
+
         if (this.tasks[i].text !== ''){
             if (this.changeText.length >= 5){
                 this.tasks[i].text = this.changeText;
